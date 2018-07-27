@@ -3,6 +3,7 @@ BankAccountService
 BankAccountService is a micro-service that mimics some operations of a bank account
 
 A: Functional Requirements
+
 	BankAccountService implements 3 APIs
 		  1. Balance – return the outstanding balance
 		  2. Deposit – credits the account with the specified amount
@@ -17,6 +18,7 @@ A: Functional Requirements
 		2. Maximum amount per withdrawal is 20K
 		3. Maximum withdrawal frequency is 3 transactions per day
 B: Components
+
 	The service requires:
 	1. Scala 2.12.6
 	2. Java 8
@@ -29,18 +31,20 @@ B: Components
 	9. ScalaTestPlus
 	10. JUnit
 C: Setup:
+
 	C.1 Database (H2)
 	The service uses a H2 database in embedded mode. The database file (acctservice_db.mv.db) can be found in:
-	/bankaccountservice_0/resources directory. This directory also contains (init.sql) file, for creation of the tables.
-	The application expects these two files in the home directory (~/<user>) of the user running the application. If no
-	database file is found, one is created automatically. However, the init.sql file must be copied manually to the same
+	/bankaccountservice_0/resources directory. 
+    This directory also contains (init.sql) file, for creation of the tables.
+	The application expects these two files in the home directory (~/<user>) of the user running the application. If no	database file is found, one is created automatically. However, the init.sql file must be copied manually to the same
 	location.
-	Before running the application, copy the two files to a location on your system and configure the new absolute path in
-	the application.conf file in the property below
+	Before running the application, copy the two files to a location on your system and configure the new absolute path in	the application.conf file in the property below
 	slick.dbs.default.db.url = "jdbc:h2:~/acctservice_db;INIT=RUNSCRIPT FROM
 	'~/init.sql';MODE=MYSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=FALSE"
 	If not copied, the database will not connect and the application will fail.
+    
 D: Usage
+
 	Note: On the first run, the database is empty. Use this method to insert a dummy record
 	http://<host>:<port>/xyzbank/createTestRecord
 	
@@ -94,6 +98,7 @@ D: Usage
 	"Message":"Withdrawal successful"
 	}
 E: Running
+
 	Clone the repository to your local machine
 	Change directory to the root folder containing the source ( /bankservice_0)
 	Execute sbt compile to compile and download dependencies
@@ -103,11 +108,14 @@ E: Running
 	sbt run
 	to use the default port 9000
 	If there are no errors Play framework starts. See Section D (Usage) on REST commands
+    
 F: Running Test Cases
+
 	Execute the command:
 		sbt test
 
 G: Running Coverage
+
 	Run the commands
 		sbt coverage test
 		sbt coverageReport
@@ -115,6 +123,7 @@ G: Running Coverage
 	execution console. They are in HTML and XML formats
 
 H: Load Testing
+
 	A JMeter test plan (BankServiceTestPlan.jmx) and test data (testData.txt) is included. Import the test plan and into
 	JMeter from the public/LoadTests.
 	
@@ -123,6 +132,7 @@ H: Load Testing
 	path
 
 I: MySQL Database (This section applies if MySQL database is used)
+
 	Configurations for MySQL have also been provided. To use MySQL, comment H2 database settings and uncomment
 	MySQL settings in application.conf
 	Change settings for MySQL in conf/application.conf and apply the relevant values for your environment for

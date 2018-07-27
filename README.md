@@ -1,4 +1,5 @@
 BankAccountService
+
 BankAccountService is a micro-service that mimics some operations of a bank account
 
 A: Functional Requirements

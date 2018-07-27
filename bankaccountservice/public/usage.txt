@@ -1,0 +1,55 @@
+NOTE:
+
+On the first run, the database is empty. Use this method to insert a dummy record
+http://<host>:<port>/xyzbank/createTestRecord
+
+Use debug to get a dump of accounts and transactions in the database. Use the account_ids for Tests and Unit Tests
+http://<host>:<port>/xyzbank/debug
+
+
+Balance:
+http://<host>:<port>/xyzbank/account/balance/{$account_id}
+The default port is 9000.
+A sample success Json output is:
+	{
+	  "Status":"Ok",
+	  "Message":"current account balance is 28310.0"
+	}
+
+Deposit
+Construct a Json Request and send it via PUT to
+http://<host>:<port>/xyzbank/account/deposit/depositPut
+A sample Json input is:
+	{  
+	 "id":"1532560028767",
+	 "txn_type":"deposit",
+	 "account_id":"1532627127911",
+	 "amount":20,
+	 "event_time":1532560028767
+	}
+	
+A sample success Json output is:
+	{
+	  "Status":"Ok",
+	  "Message":"Deposit successful"
+	}
+
+
+Withdrawal
+Construct a Json Request and send it via PUT to
+http://<host>:<port>/xyzbank/account/withdraw/withdrawPut
+
+A sample Json input is:
+	{  
+	 "id":"1532560028767",
+	 "txn_type":"withdraw",
+	 "account_id":"1532627127911",
+	 "amount":15,
+	 "event_time":1532560028767
+	}
+
+A sample success Json output is:
+	{
+	  "Status":"Ok",
+	  "Message":"Withdrawal successful"
+	}
